@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { LocalizationProvider as MuiLocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 
 import App from "./root/App";
 import { store } from "store";
@@ -26,11 +28,13 @@ const darkTheme = createTheme({
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={darkTheme}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ThemeProvider>
+      <MuiLocalizationProvider dateAdapter={AdapterDateFns}>
+        <ThemeProvider theme={darkTheme}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ThemeProvider>
+      </MuiLocalizationProvider>
     </Provider>
   </React.StrictMode>
 );

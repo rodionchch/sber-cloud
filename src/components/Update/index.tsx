@@ -14,6 +14,9 @@ const Update = () => {
     onCheck,
     status,
     onPlayAll,
+    planed,
+    onPlanned,
+    onCancelPlan
   } = useUpdate();
 
   return (
@@ -32,6 +35,7 @@ const Update = () => {
         onPlay={onPlay}
         onPlayAll={onPlayAll}
         checked={checked}
+        onPlanned={onPlanned}
       />
 
       <List
@@ -47,10 +51,13 @@ const Update = () => {
           server?.updates.map((update) => {
             return (
               <UpdateItem
+                key={update.id}
                 update={update}
                 checked={checked}
                 onCheck={onCheck}
                 status={status.current}
+                planed={planed}
+                onCancelPlan={onCancelPlan}
               />
             );
           })}

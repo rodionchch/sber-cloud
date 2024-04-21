@@ -5,11 +5,15 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Tooltip,
+  IconButton,
 } from "@mui/material";
+import { format } from "date-fns";
 
 import { BaseType } from "utils/getData";
 import getStatus from "./helpers/getStatus";
 import { UpdateStatus } from "./Update.types";
+import { Schedule } from "@mui/icons-material";
 
 type UpdateItemProps = {
   update: BaseType;
@@ -18,6 +22,8 @@ type UpdateItemProps = {
   status: {
     [key: string]: string | ReturnType<typeof setTimeout>;
   };
+  planed?: { [key: string]: Date | null };
+  onCancelPlan?: (id: number) => void;
 };
 
 const UpdateItem: React.FC<UpdateItemProps> = ({
@@ -25,6 +31,8 @@ const UpdateItem: React.FC<UpdateItemProps> = ({
   checked,
   onCheck,
   status,
+  planed,
+  onCancelPlan,
 }) => {
   const labelId = `checkbox-list-label-${update?.id}`;
 
@@ -54,8 +62,31 @@ const UpdateItem: React.FC<UpdateItemProps> = ({
           secondary={update?.description}
         />
         <Box
-          sx={{ flex: "1 0 24px", display: "flex", justifyContent: "flex-end" }}
+          sx={{
+            flex: "1 0 72px",
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+          }}
         >
+          {planed?.[update?.id] && (
+            <Tooltip
+              sx={{ marginRight: "8px" }}
+              title={`Запланировано в ${format(
+                planed?.[update?.id] || "",
+                "HH:mm"
+              )}`}
+            >
+              <IconButton
+                onClick={() => {
+                  onCancelPlan?.(update?.id);
+                }}
+              >
+                <Schedule />
+              </IconButton>
+            </Tooltip>
+          )}
+
           {getStatus(update?.id, status)}
         </Box>
       </ListItemButton>

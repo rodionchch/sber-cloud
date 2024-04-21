@@ -1,7 +1,9 @@
-import { Box, IconButton, Tooltip, Typography } from "@mui/material";
+import { Box, IconButton, Tooltip, Typography, Dialog } from "@mui/material";
 import { Pause, PlayArrow, Schedule, Loop } from "@mui/icons-material";
 
 import { ServerType } from "utils/getData";
+import { StaticTimePicker } from "@mui/x-date-pickers";
+import { useState } from "react";
 
 type UpdateActionsProps = {
   server?: ServerType;
@@ -10,6 +12,7 @@ type UpdateActionsProps = {
   onPause: () => void;
   onPlay: () => void;
   onPlayAll: () => void;
+  onPlanned: (date: Date | null) => void;
 };
 
 const UpdateActions: React.FC<UpdateActionsProps> = ({
@@ -19,7 +22,10 @@ const UpdateActions: React.FC<UpdateActionsProps> = ({
   onPause,
   onPlay,
   onPlayAll,
+  onPlanned,
 }) => {
+  const [showDialog, setShowDialog] = useState(false);
+
   return (
     <Box
       sx={{
@@ -33,25 +39,45 @@ const UpdateActions: React.FC<UpdateActionsProps> = ({
       <Typography sx={{ flex: 1 }} variant="h3">
         {server?.name}
       </Typography>
-
       <Tooltip title="Запланировать">
-        <IconButton disabled={getDone()}>
+        <IconButton
+          disabled={getDone()}
+          onClick={() => {
+            setShowDialog(true);
+          }}
+        >
           <Schedule />
         </IconButton>
       </Tooltip>
+
+      <Dialog
+        open={showDialog}
+        onClose={() => {
+          setShowDialog(!showDialog);
+        }}
+      >
+        <StaticTimePicker
+          ampm={false}
+          minutesStep={15}
+          onAccept={(date) => {
+            onPlanned(date);
+          }}
+          onClose={() => {
+            setShowDialog(false);
+          }}
+        />
+      </Dialog>
 
       <Tooltip title="Обновить все">
         <IconButton disabled={getDone()} onClick={onPlayAll}>
           <Loop />
         </IconButton>
       </Tooltip>
-
       <Tooltip title="Отменить">
         <IconButton disabled={!checked.length} onClick={onPause}>
           <Pause />
         </IconButton>
       </Tooltip>
-
       <Tooltip title="Обновить">
         <IconButton disabled={!checked.length} onClick={onPlay}>
           <PlayArrow />

@@ -1,4 +1,4 @@
-import { Box, CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import { Pause, Error, CheckCircle } from "@mui/icons-material";
 import { UpdateStatus } from "../Update.types";
 

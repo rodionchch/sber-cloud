@@ -7,13 +7,14 @@ import { getData } from "utils/getData";
 import { UpdateStatus } from "./Update.types";
 
 const useUpdate = () => {
+  const { id } = useParams();
+  const auth = useAuth();
   const [checked, setChecked] = useState<number[]>([]);
+  const [planed, setPlaned] = useState<{ [key: string]: Date | null }>({});
+
   const status = useRef<{
     [key: string]: string | ReturnType<typeof setTimeout>;
   }>({});
-
-  const { id } = useParams();
-  const auth = useAuth();
 
   const server = useMemo(() => {
     return getData(auth?.user)?.servers?.find(
@@ -57,6 +58,7 @@ const useUpdate = () => {
       }, 6000);
     });
     setChecked([]);
+    setPlaned({});
   };
 
   const onPlayAll = () => {
@@ -71,6 +73,7 @@ const useUpdate = () => {
       }, 10000);
     });
     setChecked([]);
+    setPlaned({});
   };
 
   const onPause = () => {
@@ -80,6 +83,21 @@ const useUpdate = () => {
     });
 
     setChecked([]);
+  };
+
+  const onPlanned = (date: Date | null) => {
+    if (date) {
+      const plannedObj: { [key: string]: Date | null } = { ...planed };
+      checked.forEach((id) => {
+        plannedObj[id] = date;
+      });
+      setChecked([]);
+      setPlaned(plannedObj);
+    }
+  };
+
+  const onCancelPlan = (id: number) => {
+    setPlaned({ ...planed, [id]: null });
   };
 
   const getDone = () => {
@@ -99,6 +117,9 @@ const useUpdate = () => {
     onCheck,
     status,
     onPlayAll,
+    planed,
+    onPlanned,
+    onCancelPlan,
   };
 };
 

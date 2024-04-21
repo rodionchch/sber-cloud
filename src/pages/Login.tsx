@@ -12,6 +12,7 @@ import { css } from "@emotion/react";
 import { SyntheticEvent, useState } from "react";
 import { useAuth } from "hooks/useAuth";
 import { getData } from "utils/getData";
+import { Navigate } from "react-router-dom";
 
 /** @jsxImportSource @emotion/react */
 
@@ -52,6 +53,10 @@ const Login = () => {
       password: false,
     });
   };
+
+  if (auth?.user) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <Container component="main" maxWidth="xs">
