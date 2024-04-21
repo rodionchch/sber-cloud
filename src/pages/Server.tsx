@@ -1,9 +1,9 @@
 import { Box, Container, Grid } from "@mui/material";
-import Dashboard from "components/Dashboard";
 import MainNav from "components/MainNav";
 import SideNav from "components/SideNav";
+import Update from "components/Update";
 
-const Home = () => {
+const Server = () => {
   return (
     <Box>
       <MainNav />
@@ -14,7 +14,7 @@ const Home = () => {
             <SideNav />
           </Grid>
           <Grid sm={9} xs={12}>
-            <Dashboard />
+            <Update />
           </Grid>
         </Grid>
       </Container>
@@ -22,4 +22,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Server;

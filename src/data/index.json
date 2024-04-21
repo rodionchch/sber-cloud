@@ -1,0 +1,77 @@
+[
+  {
+    "user": {
+      "id": 1,
+      "login": "admin",
+      "password": "sber",
+      "name": "Администратор",
+      "email": " help@sberbank.ru"
+    },
+    "servers": [
+      {
+        "id": 1,
+        "name": "Ubuntu",
+        "description": "2 CPU • 2 Гб RAM • 40 Гб NVMe",
+        "updates": [
+          {
+            "id": 1,
+            "name": "Compatibility issues with Intel Smart Sound Technology drivers",
+            "description": "Devices with the affected Intel SST driver might receive an error with a blue screen."
+          },
+          {
+            "id": 2,
+            "name": "The February 2024 security update might fail to install",
+            "description": "Some users reported the update’s download stops at 96% and fails to install"
+          },
+          {
+            "id": 3,
+            "name": "Some apps might fail to playback, record, or capture video",
+            "description": "Apps and cameras using WVC1 codec might fail to function as expected."
+          },
+          {
+            "id": 4,
+            "name": "Desktop icons might move unexpectedly between monitors",
+            "description": "This issue is only observed if you are using more than one monitor when attempting to use Copilot."
+          },
+          {
+            "id": 5,
+            "name": "Printer names and icons might be changed and HP Smart app automatically installs",
+            "description": "In most cases, it is possible to use the printer for printing jobs and other features such as copy, scan, or fax."
+          },
+          {
+            "id": 6,
+            "name": "Received reports about issues connecting to Wi-Fi networks",
+            "description": "We have confirmed this issue was caused by KB5032288 and KB5033375, released in December 2023"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Debian",
+        "description": "1 CPU • 2 Гб RAM • 10 Гб NVMe",
+        "updates": [{ "id": 1, "name": "Update 1", "description": "No data" }]
+      },
+      {
+        "id": 3,
+        "name": "Arch Linux",
+        "description": "2 CPU • 4 Гб RAM • 60 Гб NVMe",
+        "updates": [{ "id": 1, "name": "Update 1", "description": "No data" }]
+      },
+      {
+        "id": 4,
+        "name": "Windows Server",
+        "description": "4 CPU • 6 Гб RAM • 120 Гб NVMe",
+        "updates": [{ "id": 1, "name": "Update 1", "description": "No data" }]
+      }
+    ]
+  },
+  {
+    "user": {
+      "id": 2,
+      "login": "test.internal",
+      "password": "p112233",
+      "name": "Тест (Internal)",
+      "email": " help@sberbank.ru"
+    }
+  }
+]

@@ -11,6 +11,7 @@ import { ReactComponent as Logo } from "assets/images/logo.svg";
 import { css } from "@emotion/react";
 import { SyntheticEvent, useState } from "react";
 import { useAuth } from "hooks/useAuth";
+import { getData } from "utils/getData";
 
 /** @jsxImportSource @emotion/react */
 
@@ -27,7 +28,9 @@ const Login = () => {
     e.preventDefault();
 
     if (login && password) {
-      if (login === "admin" && password === "sber") {
+      const user = getData(login)?.user;
+
+      if (login === user?.login && password === user?.password) {
         await auth?.onLogin({ login });
 
         console.log({
