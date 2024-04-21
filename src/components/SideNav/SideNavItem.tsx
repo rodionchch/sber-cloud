@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 
 import { NavItemConfig } from "./SideNav.types";
+import { useNavigate } from "react-router-dom";
 
 interface NavItemProps extends Omit<NavItemConfig, "items"> {
   pathname: string;
@@ -9,22 +10,16 @@ interface NavItemProps extends Omit<NavItemConfig, "items"> {
 const SideNavItem = ({
   active,
   disabled,
-  external,
-  href,
+  pathname,
   icon,
   title,
 }: NavItemProps) => {
+  const navigate = useNavigate();
+
   return (
     <li>
       <Box
-        {...(href
-          ? {
-              component: "a",
-              href,
-              target: external ? "_blank" : undefined,
-              rel: external ? "noreferrer" : undefined,
-            }
-          : { role: "button" })}
+        role="button"
         sx={{
           alignItems: "center",
           borderRadius: 1,
@@ -46,6 +41,7 @@ const SideNavItem = ({
           }),
         }}
         onClick={(e) => {
+          navigate(pathname);
           if (disabled) {
             e.preventDefault();
           }

@@ -10,10 +10,10 @@ const Server = () => {
 
       <Container maxWidth="lg" sx={{ py: "22px", display: "flex" }}>
         <Grid container>
-          <Grid sm={3} xs={0}>
+          <Grid lg={3}>
             <SideNav />
           </Grid>
-          <Grid sm={9} xs={12}>
+          <Grid lg={9}>
             <Update />
           </Grid>
         </Grid>

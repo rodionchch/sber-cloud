@@ -49,19 +49,77 @@
         "id": 2,
         "name": "Debian",
         "description": "1 CPU • 2 Гб RAM • 10 Гб NVMe",
-        "updates": [{ "id": 1, "name": "Update 1", "description": "No data" }]
+        "updates": [
+          {
+            "id": 1,
+            "name": "'Local Security Authority protection is off' with persistent restart",
+            "description": "Devices with the affected Intel SST driver might receive an error with a blue screen."
+          },
+          {
+            "id": 2,
+            "name": "Saving or copying files might intermittently fail",
+            "description": "You might receive an error or files might intermittently fail to save or copy, especially to network shares."
+          }
+        ]
       },
       {
         "id": 3,
         "name": "Arch Linux",
         "description": "2 CPU • 4 Гб RAM • 60 Гб NVMe",
-        "updates": [{ "id": 1, "name": "Update 1", "description": "No data" }]
+        "updates": [
+          {
+            "id": 1,
+            "name": "Intermittent issues with speech recognition when using Chinese or Japanese",
+            "description": "This issue might also affect expressive input, and handwriting recognition."
+          },
+          {
+            "id": 2,
+            "name": "Third-party UI customization apps ",
+            "description": "Updates released February 28, 2023 or later."
+          },
+          {
+            "id": 3,
+            "name": "Some apps might fail to playback, record, or capture video",
+            "description": "Apps and cameras using WVC1 codec might fail to function as expected."
+          },
+          {
+            "id": 3,
+            "name": "Some apps might fail to playback, record, or capture video",
+            "description": "Apps and cameras using WVC1 codec might fail to function as expected."
+          },
+          {
+            "id": 4,
+            "name": "Desktop icons might move unexpectedly between monitors",
+            "description": "This issue is only observed if you are using more than one monitor when attempting to use Copilot."
+          },
+          {
+            "id": 5,
+            "name": "Printer names and icons might be changed and HP Smart app automatically installs",
+            "description": "In most cases, it is possible to use the printer for printing jobs and other features such as copy, scan, or fax."
+          }
+        ]
       },
       {
         "id": 4,
         "name": "Windows Server",
         "description": "4 CPU • 6 Гб RAM • 120 Гб NVMe",
-        "updates": [{ "id": 1, "name": "Update 1", "description": "No data" }]
+        "updates": [
+          {
+            "id": 1,
+            "name": "Microsoft received reports about an “UNSUPPORTED_PROCESSOR” error",
+            "description": "Investigation concluded that the error reported by users was not caused by the August 2023 preview updates."
+          },
+          {
+            "id": 2,
+            "name": "WSUS might not offer updates to Windows 11, version 22H2",
+            "description": "Updates released February 14, 2023 might not be offered via WSUS to some client devices."
+          },
+          {
+            "id": 3,
+            "name": "When using Outlook, opening links in emails might display an error",
+            "description": "Office updates released July 11, 2023 introduce this behavior by design due to the new security protections"
+          }
+        ]
       }
     ]
   },

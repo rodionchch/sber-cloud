@@ -1,42 +1,47 @@
 import {
+  Box,
   Checkbox,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { useState } from "react";
+
 import { BaseType } from "utils/getData";
-import LoopIcon from "@mui/icons-material/Loop";
+import getStatus from "./helpers/getStatus";
+import { UpdateStatus } from "./Update.types";
 
 type UpdateItemProps = {
   update: BaseType;
+  checked: number[];
+  onCheck: (value: number) => void;
+  status: {
+    [key: string]: string | ReturnType<typeof setTimeout>;
+  };
 };
 
-const UpdateItem: React.FC<UpdateItemProps> = ({ update }) => {
+const UpdateItem: React.FC<UpdateItemProps> = ({
+  update,
+  checked,
+  onCheck,
+  status,
+}) => {
   const labelId = `checkbox-list-label-${update?.id}`;
 
-  const [checked, setChecked] = useState([0]);
-
-  const handleToggle = (value: number) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    setChecked(newChecked);
-  };
-
   return (
-    <ListItem key={update?.id} secondaryAction={<LoopIcon />} disablePadding>
-      <ListItemButton role={undefined} onClick={handleToggle(update?.id)} dense>
+    <ListItem key={update?.id} disablePadding>
+      <ListItemButton
+        onClick={() => {
+          if (status?.[update?.id] !== UpdateStatus.DONE) {
+            onCheck(update?.id);
+          }
+        }}
+        dense
+      >
         <ListItemIcon>
           <Checkbox
             edge="start"
+            disabled={status?.[update?.id] === UpdateStatus.DONE}
             checked={checked.indexOf(update?.id) !== -1}
             tabIndex={-1}
             disableRipple
@@ -48,6 +53,11 @@ const UpdateItem: React.FC<UpdateItemProps> = ({ update }) => {
           primary={update?.name}
           secondary={update?.description}
         />
+        <Box
+          sx={{ flex: "1 0 24px", display: "flex", justifyContent: "flex-end" }}
+        >
+          {getStatus(update?.id, status)}
+        </Box>
       </ListItemButton>
     </ListItem>
   );

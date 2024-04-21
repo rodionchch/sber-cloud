@@ -20,6 +20,7 @@ const SideNav = () => {
         "&::-webkit-scrollbar": { display: "none" },
         flex: "1 1 auto",
         p: "12px",
+        display: { xs: "none", lg: "flex" },
       }}
     >
       {renderNavItems({ pathname: "/", items: navItems })}

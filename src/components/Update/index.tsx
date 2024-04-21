@@ -1,20 +1,20 @@
-import { Box, IconButton, List, Tooltip, Typography } from "@mui/material";
-import { useAuth } from "hooks/useAuth";
-import { useMemo } from "react";
-import { useParams } from "react-router-dom";
-import { getData } from "utils/getData";
+import { Box, List } from "@mui/material";
+
 import UpdateItem from "./UpdateItem";
-import { Pause, PlayArrow, Schedule, Loop } from "@mui/icons-material";
+import useUpdate from "./useUpdate";
+import UpdateActions from "./UpdateActions";
 
 const Update = () => {
-  const { id } = useParams();
-  const auth = useAuth();
-
-  const server = useMemo(() => {
-    return getData(auth?.user)?.servers?.find(
-      (server) => server.id === Number(id)
-    );
-  }, [auth?.user, id]);
+  const {
+    server,
+    getDone,
+    checked,
+    onPause,
+    onPlay,
+    onCheck,
+    status,
+    onPlayAll,
+  } = useUpdate();
 
   return (
     <Box
@@ -25,43 +25,14 @@ const Update = () => {
         flexWrap: "wrap",
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "24px",
-          flex: 1,
-        }}
-      >
-        <Typography sx={{ flex: 1 }} variant="h3">
-          {server?.name}
-        </Typography>
-
-        <Tooltip title="Запланировать">
-          <IconButton>
-            <Schedule />
-          </IconButton>
-        </Tooltip>
-
-        <Tooltip title="Обновить все">
-          <IconButton>
-            <Loop />
-          </IconButton>
-        </Tooltip>
-
-        <Tooltip title="Отменить">
-          <IconButton disabled>
-            <Pause />
-          </IconButton>
-        </Tooltip>
-
-        <Tooltip title="Обновить">
-          <IconButton disabled>
-            <PlayArrow />
-          </IconButton>
-        </Tooltip>
-      </Box>
+      <UpdateActions
+        server={server}
+        getDone={getDone}
+        onPause={onPause}
+        onPlay={onPlay}
+        onPlayAll={onPlayAll}
+        checked={checked}
+      />
 
       <List
         sx={{
@@ -74,7 +45,14 @@ const Update = () => {
       >
         {server?.updates &&
           server?.updates.map((update) => {
-            return <UpdateItem update={update} />;
+            return (
+              <UpdateItem
+                update={update}
+                checked={checked}
+                onCheck={onCheck}
+                status={status.current}
+              />
+            );
           })}
       </List>
     </Box>

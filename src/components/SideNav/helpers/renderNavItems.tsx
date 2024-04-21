@@ -21,7 +21,11 @@ const renderNavItems = ({
   );
 
   return (
-    <Stack component="ul" spacing={1} sx={{ listStyle: "none", m: 0, p: 0 }}>
+    <Stack
+      component="ul"
+      spacing={1}
+      sx={{ listStyle: "none", m: 0, p: 0, width: "100%" }}
+    >
       {children}
     </Stack>
   );

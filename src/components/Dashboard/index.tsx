@@ -12,6 +12,7 @@ const Dashboard = () => {
         px: "12px",
         marginRight: "10px",
         flexWrap: "wrap",
+        justifyContent: { xs: "center", lg: "flex-start" },
       }}
     >
       {getData(auth?.user)?.servers?.map((server) => (

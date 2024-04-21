@@ -6,7 +6,7 @@ export type BaseType = {
   description: string;
 };
 
-type ServerType = BaseType & { updates?: BaseType[] };
+export type ServerType = BaseType & { updates?: BaseType[] };
 
 type DataType = {
   user?: {
