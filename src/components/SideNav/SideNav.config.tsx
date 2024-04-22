@@ -21,8 +21,8 @@ export const navItems = [
     active: true,
   },
   {
-    key: "customers",
-    title: "servers",
+    key: "servers",
+    title: "Выделенные серверы",
     href: "/",
     icon: <Dns />,
     disabled: true,
