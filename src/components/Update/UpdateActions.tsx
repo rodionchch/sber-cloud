@@ -41,7 +41,7 @@ const UpdateActions: React.FC<UpdateActionsProps> = ({
       </Typography>
       <Tooltip title="Запланировать">
         <IconButton
-          disabled={getDone()}
+          disabled={!checked.length}
           onClick={() => {
             setShowDialog(true);
           }}
